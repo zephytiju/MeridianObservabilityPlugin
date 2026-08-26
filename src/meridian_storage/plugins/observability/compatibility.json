@@ -1,0 +1,62 @@
+{
+  "$comment": "SPDX-License-Identifier: Apache-2.0",
+  "formatVersion": "meridian-package-compatibility.v1",
+  "package": "meridian-plugin-observability",
+  "version": "1.0.0",
+  "python": ">=3.12,<3.15",
+  "designRevisions": {
+    "hld": 56,
+    "catalogsAndPublicInterfaces": 70,
+    "engineAdapters": 24,
+    "kafkaStreamingAdapter": 6,
+    "meridianConstructs": 45,
+    "observabilityLld": 17
+  },
+  "dependencies": [
+    {
+      "package": "meridian-storage-core",
+      "constraint": "==1.0.0",
+      "releaseCommit": "ed533571f502bf530689ad9839f5e2608fee6514",
+      "wheelSha256": "6b8ebb70ee1a8467a96d668878a8eebf826c1c4b63b3832ae70f2c630a8ef4a1"
+    },
+    {
+      "package": "meridian-storage-semantics",
+      "constraint": "==1.0.0",
+      "releaseCommit": "62cc5caba415594f99cb8b25146e6854d5aec5bf",
+      "wheelSha256": "76fced0bc083f145fad1949b85147a3563f3584f99994471693915a8ba1851ec"
+    },
+    {
+      "package": "meridian-storage-query",
+      "constraint": "==1.0.0",
+      "releaseCommit": "c358b44fa7e836b3196f28c37ef9d729e46ffe2a",
+      "wheelSha256": "b7ae4572ae70fb51ec190080df40fd10e667d69634ee811f0a7e3f72b56e41cc"
+    },
+    {
+      "package": "meridian-storage-evidence",
+      "constraint": "==1.0.0",
+      "releaseCommit": "9ac5c08f128cacc946d8a6444a76063f48c4827e",
+      "wheelSha256": "0752cbb1cac2b72e9a041a455bdf80a33c26eea1643526ac45c12d15f7210a3e"
+    },
+    {
+      "package": "meridian-storage-clickhouse",
+      "constraint": "==1.0.0; test only",
+      "releaseCommit": "e3a105807b80aa10e8bc91b07d2fffde8862157f",
+      "wheelSha256": "b2f0839c9fc3d0b97d4ee4c1ad85c1debc6f00283a643bc361b9ea48dbd70534"
+    }
+  ],
+  "contracts": {
+    "plugin": "1.0.0",
+    "core": "1.x",
+    "queryOperation": "meridian.operation.query.v1",
+    "catalogsUsed": ["evidence"],
+    "catalogsOwned": [],
+    "signals": ["logs", "metrics", "traces"]
+  },
+  "boundaries": {
+    "collectorLifecycleOwner": "MeridianConstructs/Platform",
+    "engineSelectionOwner": "Platform/Vangu IaC",
+    "otelFacadeOwner": "meridian-plugin-observability",
+    "evidenceSyntaxOwner": "meridian-storage-evidence",
+    "nativeQuery": "excluded-post-v1"
+  }
+}

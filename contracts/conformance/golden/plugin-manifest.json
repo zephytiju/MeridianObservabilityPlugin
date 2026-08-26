@@ -1,0 +1,21 @@
+{
+  "formatVersion": "meridian.observability.plugin.v1",
+  "package": "meridian-plugin-observability",
+  "version": "1.0.0",
+  "plugin": {
+    "id": "observability",
+    "contract": "1.0.0",
+    "core": "1.x"
+  },
+  "catalogs": {
+    "owned": [],
+    "used": ["evidence"]
+  },
+  "signals": ["logs", "metrics", "traces"],
+  "boundaries": {
+    "collectorProvisioning": false,
+    "engineSelection": false,
+    "backendCredentials": false,
+    "nativeQuery": false
+  }
+}
