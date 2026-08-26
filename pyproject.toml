@@ -43,7 +43,7 @@ test = [
   "meridian-storage-clickhouse==1.0.0",
   "mypy==1.17.1",
   "pip-audit==2.9.0",
-  "pytest==9.0.3",
+  "pytest==9.1.1",
   "pytest-cov==6.2.1",
   "ruff==0.12.10",
   "twine==6.1.0",
