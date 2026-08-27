@@ -2,7 +2,7 @@
 
 # Meridian Observability Plugin
 
-[![CI](https://github.com/zephytiju/meridian-plugin-observability/actions/workflows/ci.yml/badge.svg)](https://github.com/zephytiju/meridian-plugin-observability/actions/workflows/ci.yml)
+[![CI](https://github.com/zephytiju/MeridianObservabilityPlugin/actions/workflows/ci.yml/badge.svg)](https://github.com/zephytiju/MeridianObservabilityPlugin/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.12--3.14-blue.svg)](pyproject.toml)
 

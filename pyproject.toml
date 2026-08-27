@@ -50,9 +50,9 @@ test = [
 ]
 
 [project.urls]
-Documentation = "https://github.com/zephytiju/meridian-plugin-observability#readme"
-Issues = "https://github.com/zephytiju/meridian-plugin-observability/issues"
-Repository = "https://github.com/zephytiju/meridian-plugin-observability"
+Documentation = "https://github.com/zephytiju/MeridianObservabilityPlugin#readme"
+Issues = "https://github.com/zephytiju/MeridianObservabilityPlugin/issues"
+Repository = "https://github.com/zephytiju/MeridianObservabilityPlugin"
 
 [project.entry-points."meridian_storage.plugins"]
 observability = "meridian_storage.plugins.observability.plugin:ObservabilityPluginFactory"
