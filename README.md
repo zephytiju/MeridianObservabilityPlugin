@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.12--3.14-blue.svg)](pyproject.toml)
 
-`meridian-plugin-observability` is the single Apache-2.0 Python distribution in
+`meridian-storage-plugin-observability` is the single Apache-2.0 Python distribution in
 this repository. It contributes `meridian_storage.plugins.observability` to the
 PEP 420 `meridian_storage` namespace.
 
@@ -23,7 +23,7 @@ accept backend credentials, start a Collector, or expose an Adapter/Engine API.
 ## Install
 
 ```console
-python -m pip install meridian-plugin-observability==1.0.0
+python -m pip install meridian-storage-plugin-observability==1.0.1
 ```
 
 The release is pinned to `meridian-storage-core`, `meridian-storage-semantics`,
@@ -100,6 +100,7 @@ See [architecture](docs/architecture.md), [configuration](docs/configuration.md)
 
 ```console
 python -m venv .venv
+.venv/bin/python -m pip install --upgrade pip==26.2
 .venv/bin/python -m pip install -e '.[test]'
 .venv/bin/ruff format --check .
 .venv/bin/ruff check .

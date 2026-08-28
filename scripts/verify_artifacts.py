@@ -55,7 +55,7 @@ def _verify_wheel(path: Path) -> dict[str, object]:
         names = tuple(sorted(archive.namelist()))
         dist_info = sorted({name.split("/", 1)[0] for name in names if ".dist-info/" in name})
         _require(
-            dist_info == ["meridian_plugin_observability-1.0.0.dist-info"],
+            dist_info == ["meridian_storage_plugin_observability-1.0.1.dist-info"],
             "wheel must contain exactly one observability distribution",
         )
         root = dist_info[0]
@@ -74,8 +74,11 @@ def _verify_wheel(path: Path) -> dict[str, object]:
             "wheel contains Adapter source",
         )
         metadata_value = BytesParser().parsebytes(archive.read(f"{root}/METADATA"))
-        _require(metadata_value["Name"] == "meridian-plugin-observability", "name differs")
-        _require(metadata_value["Version"] == "1.0.0", "version differs")
+        _require(
+            metadata_value["Name"] == "meridian-storage-plugin-observability",
+            "name differs",
+        )
+        _require(metadata_value["Version"] == "1.0.1", "version differs")
         _require(metadata_value["License-Expression"] == "Apache-2.0", "license differs")
         _require(
             SpecifierSet(metadata_value["Requires-Python"]) == SpecifierSet(">=3.12,<3.15"),
@@ -96,7 +99,7 @@ def _verify_sdist(path: Path) -> dict[str, object]:
         names = tuple(sorted(member.name for member in archive.getmembers()))
         prefixes = {PurePosixPath(name).parts[0] for name in names}
         _require(
-            prefixes == {"meridian_plugin_observability-1.0.0"},
+            prefixes == {"meridian_storage_plugin_observability-1.0.1"},
             "sdist must contain exactly one project root",
         )
         prefix = next(iter(prefixes))
@@ -125,8 +128,8 @@ def main() -> None:
         raise SystemExit("expected exactly one wheel and one sdist")
     evidence = {
         "formatVersion": "meridian.observability.artifacts.v1",
-        "package": "meridian-plugin-observability",
-        "version": "1.0.0",
+        "package": "meridian-storage-plugin-observability",
+        "version": "1.0.1",
         "artifacts": [_verify_wheel(wheels[0]), _verify_sdist(sdists[0])],
         "status": "passed",
     }

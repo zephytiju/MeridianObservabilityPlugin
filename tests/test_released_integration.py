@@ -39,6 +39,12 @@ def test_released_evidence_bridge_preserves_otel_correlation() -> None:
     expression = bridge.drain()[0]
     assert expression.catalog == "evidence"
     assert expression.method == "append"
+    assert expression.fingerprint == (
+        "sha256:a5ffd99671853bfd8ba91d3bd18174b3270e1b04b8fd090c8f9d910d2869c0ea"
+    )
+    assert expression.arguments["idempotencyKey"] == (
+        "sha256:d31cb7e5b15a3d4474155af9fe76ddb5e59b15ca4feed96fc6c61db4543d0bf1"
+    )
     record = expression.arguments["data"]
     assert record["traceId"] == "a" * 32  # type: ignore[index]
     assert bridge.health().exported == 1
@@ -57,11 +63,31 @@ def test_released_evidence_bridge_preserves_otel_correlation() -> None:
 def test_generated_mapping_first_query_compiles_with_released_clickhouse_adapter(
     evidence_resources: object,
 ) -> None:
-    query = TelemetryQueries(ReadyMeridian(), evidence_resources).logs(  # type: ignore[arg-type]
-        start=_START,
-        end=_START + timedelta(minutes=15),
-        min_severity="ERROR",
-        trace_id="c" * 32,
+    query = (
+        TelemetryQueries(ReadyMeridian(), evidence_resources)
+        .logs(  # type: ignore[arg-type]
+            start=_START,
+            end=_START + timedelta(minutes=15),
+            min_severity="ERROR",
+            trace_id="c" * 32,
+        )
+        .selecting("evidenceId", "observedTime", "severity", "traceId")
+        .page(limit=37)
+    )
+    assert query.expression.arguments["select"] == (
+        "evidenceId",
+        "observedTime",
+        "severity",
+        "traceId",
+    )
+    assert query.logical_plan.to_dict()["result"]["projection"] == [
+        {"expression": {"kind": "field", "name": "evidenceId"}},
+        {"expression": {"kind": "field", "name": "observedTime"}},
+        {"expression": {"kind": "field", "name": "severity"}},
+        {"expression": {"kind": "field", "name": "traceId"}},
+    ]
+    assert query.fingerprint == (
+        "sha256:cdeee33e2c0a1cf69a65eb6c6d60605088227b76e5146c02d4fa98a943234554"
     )
     resource = ResourceRef("evidence", "telemetry", "logs")
     columns = (
