@@ -31,8 +31,7 @@ mapping-first `evidence.query` Expression executed by Core and the corresponding
 accepts an Adapter, Engine, endpoint, credential, SQL, native query, or raw
 payload.
 
-The task-owned distribution name is `meridian-plugin-observability`. The locked
-LLD revision 17 retains the earlier working label
-`meridian-storage-plugin-observability`; this release follows the repository and
-distribution identity explicitly assigned by [02m-14] while preserving the
-locked import namespace and plugin contract.
+The distribution name is `meridian-storage-plugin-observability`. It preserves
+the `meridian_storage.plugins.observability` import namespace and the Core
+`observability` plugin entry point while owning no Catalog, service, Collector,
+Adapter, Engine, or backend lifecycle.

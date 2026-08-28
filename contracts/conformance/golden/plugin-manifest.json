@@ -1,7 +1,7 @@
 {
   "formatVersion": "meridian.observability.plugin.v1",
-  "package": "meridian-plugin-observability",
-  "version": "1.0.0",
+  "package": "meridian-storage-plugin-observability",
+  "version": "1.0.1",
   "plugin": {
     "id": "observability",
     "contract": "1.0.0",
