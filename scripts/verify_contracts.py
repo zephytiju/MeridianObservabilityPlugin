@@ -22,10 +22,10 @@ from meridian_storage.semantics import __version__ as semantics_version
 
 ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_PINS = {
-    "meridian-storage-core": "==1.0.0",
-    "meridian-storage-evidence": "==1.0.0",
-    "meridian-storage-query": "==1.0.0",
-    "meridian-storage-semantics": "==1.0.0",
+    "meridian-storage-core": "==1.0.1",
+    "meridian-storage-evidence": "==1.0.1",
+    "meridian-storage-query": "==1.0.2",
+    "meridian-storage-semantics": "==2.0.0",
 }
 FORBIDDEN_IMPORTS = (
     "clickhouse_connect",
@@ -47,7 +47,7 @@ def _load_json(path: Path) -> dict[str, Any]:
 
 
 def _distribution_pins() -> dict[str, str]:
-    distribution = metadata.distribution("meridian-storage-plugin-observability")
+    distribution = metadata.distribution("meridian-plugin-observability")
     result: dict[str, str] = {}
     for raw in distribution.requires or ():
         requirement = Requirement(raw)
@@ -116,7 +116,10 @@ def main() -> None:
         "meridian-storage-query": query_version,
         "meridian-storage-semantics": semantics_version,
     }
-    _require(set(versions.values()) == {"1.0.0"}, "released Meridian versions differ")
+    _require(
+        versions == {name: pin.removeprefix("==") for name, pin in EXPECTED_PINS.items()},
+        "released Meridian versions differ",
+    )
     pins = _distribution_pins()
     checked_source_files = _verify_import_boundary()
     _require(len(tuple(ROOT.glob("pyproject.toml"))) == 1, "repository must have one project")
@@ -131,7 +134,7 @@ def main() -> None:
 
     evidence = {
         "formatVersion": "meridian.observability.conformance.v1",
-        "package": "meridian-storage-plugin-observability",
+        "package": "meridian-plugin-observability",
         "version": __version__,
         "contracts": {
             "goldenSha256": hashlib.sha256(golden_path.read_bytes()).hexdigest(),

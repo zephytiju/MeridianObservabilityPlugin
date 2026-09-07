@@ -8,8 +8,8 @@
   "required": ["formatVersion", "package", "version", "plugin", "catalogs", "signals", "boundaries"],
   "properties": {
     "formatVersion": {"const": "meridian.observability.plugin.v1"},
-    "package": {"const": "meridian-storage-plugin-observability"},
-    "version": {"const": "1.0.1"},
+    "package": {"const": "meridian-plugin-observability"},
+    "version": {"const": "1.0.2"},
     "plugin": {
       "type": "object",
       "additionalProperties": false,

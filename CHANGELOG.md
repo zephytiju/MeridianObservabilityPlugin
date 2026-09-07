@@ -4,6 +4,15 @@
 
 All notable changes follow Semantic Versioning.
 
+## 1.0.2 - 2026-09-07
+
+- Restore the current design-owned `meridian-plugin-observability` PyPI identity;
+  retain the import namespace, plugin entry point, and public helpers.
+- Pin Core 1.0.1, Semantics 2.0.0, Query 1.0.2, Evidence 1.0.1, and test-only
+  ClickHouse 1.0.1 with matching artifact compatibility evidence.
+- Run conformance and release gates against installed packages while preserving
+  provider/context policy and golden query fingerprints.
+
 ## 1.0.1 - 2026-08-28
 
 - Correct the published distribution identity to

@@ -1,8 +1,8 @@
 {
   "$comment": "SPDX-License-Identifier: Apache-2.0",
   "formatVersion": "meridian-package-compatibility.v1",
-  "package": "meridian-storage-plugin-observability",
-  "version": "1.0.1",
+  "package": "meridian-plugin-observability",
+  "version": "1.0.2",
   "python": ">=3.12,<3.15",
   "designRevisions": {
     "hld": 56,
@@ -16,47 +16,53 @@
   "dependencies": [
     {
       "package": "meridian-storage-core",
-      "constraint": "==1.0.0",
-      "releaseCommit": "ed533571f502bf530689ad9839f5e2608fee6514",
-      "wheelSha256": "6b8ebb70ee1a8467a96d668878a8eebf826c1c4b63b3832ae70f2c630a8ef4a1"
+      "constraint": "==1.0.1",
+      "releaseCommit": "ed9f1c140130cd235b9e64fe117cad8b9c40f30a",
+      "wheelSha256": "5c873da941b7b5e14ca0d852d723f919e88a28bbf6cc48ae0ef985b64cac9a97"
     },
     {
       "package": "meridian-storage-semantics",
-      "constraint": "==1.0.0",
-      "releaseCommit": "62cc5caba415594f99cb8b25146e6854d5aec5bf",
-      "wheelSha256": "76fced0bc083f145fad1949b85147a3563f3584f99994471693915a8ba1851ec"
+      "constraint": "==2.0.0",
+      "releaseCommit": "1192eb21c3a9abac779508f52ea156df63f7e980",
+      "wheelSha256": "86c5f5c4d7f7af045b70e5e7480b21d794d166c37d2d76acb54c4720d49732d5"
     },
     {
       "package": "meridian-storage-query",
-      "constraint": "==1.0.0",
-      "releaseCommit": "c358b44fa7e836b3196f28c37ef9d729e46ffe2a",
-      "wheelSha256": "b7ae4572ae70fb51ec190080df40fd10e667d69634ee811f0a7e3f72b56e41cc"
+      "constraint": "==1.0.2",
+      "releaseCommit": "c98eef3faec44d6c9b87e214a91f4964316b1771",
+      "wheelSha256": "fa4d7b157a8fd1c1ba18cedab09dadf0e8f5e301f5734e3e38f41906853527b8"
     },
     {
       "package": "meridian-storage-evidence",
-      "constraint": "==1.0.0",
-      "releaseCommit": "9ac5c08f128cacc946d8a6444a76063f48c4827e",
-      "wheelSha256": "0752cbb1cac2b72e9a041a455bdf80a33c26eea1643526ac45c12d15f7210a3e"
+      "constraint": "==1.0.1",
+      "releaseCommit": "edd950f2452a5b4bf75e002cd69ea16abf4c84ee",
+      "wheelSha256": "2fa9b5bb730a535432362a105a552e6c59b4da73521cde5bfbc477bbc32c2276"
     },
     {
       "package": "meridian-storage-clickhouse",
-      "constraint": "==1.0.0; test only",
-      "releaseCommit": "e3a105807b80aa10e8bc91b07d2fffde8862157f",
-      "wheelSha256": "b2f0839c9fc3d0b97d4ee4c1ad85c1debc6f00283a643bc361b9ea48dbd70534"
+      "constraint": "==1.0.1; test only",
+      "releaseCommit": "b4fe1d23140706cf839ed780b4fba93198e69f7f",
+      "wheelSha256": "a3d810666caff07a969f6bf1c121dea05e2bdc2fb019c723cb14540bd78230e5"
     }
   ],
   "contracts": {
     "plugin": "1.0.0",
     "core": "1.x",
     "queryOperation": "meridian.operation.query.v1",
-    "catalogsUsed": ["evidence"],
+    "catalogsUsed": [
+      "evidence"
+    ],
     "catalogsOwned": [],
-    "signals": ["logs", "metrics", "traces"]
+    "signals": [
+      "logs",
+      "metrics",
+      "traces"
+    ]
   },
   "boundaries": {
     "collectorLifecycleOwner": "MeridianConstructs/Platform",
     "engineSelectionOwner": "Platform/Vangu IaC",
-    "otelFacadeOwner": "meridian-storage-plugin-observability",
+    "otelFacadeOwner": "meridian-plugin-observability",
     "evidenceSyntaxOwner": "meridian-storage-evidence",
     "nativeQuery": "excluded-post-v1"
   }
