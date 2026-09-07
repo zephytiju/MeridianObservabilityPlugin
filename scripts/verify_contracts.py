@@ -22,10 +22,10 @@ from meridian_storage.semantics import __version__ as semantics_version
 
 ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_PINS = {
-    "meridian-storage-core": "==1.0.0",
-    "meridian-storage-evidence": "==1.0.0",
-    "meridian-storage-query": "==1.0.0",
-    "meridian-storage-semantics": "==1.0.0",
+    "meridian-storage-core": "==1.0.1",
+    "meridian-storage-evidence": "==1.0.1",
+    "meridian-storage-query": "==1.0.2",
+    "meridian-storage-semantics": "==2.0.0",
 }
 FORBIDDEN_IMPORTS = (
     "clickhouse_connect",
@@ -116,7 +116,10 @@ def main() -> None:
         "meridian-storage-query": query_version,
         "meridian-storage-semantics": semantics_version,
     }
-    _require(set(versions.values()) == {"1.0.0"}, "released Meridian versions differ")
+    _require(
+        versions == {name: pin.removeprefix("==") for name, pin in EXPECTED_PINS.items()},
+        "released Meridian versions differ",
+    )
     pins = _distribution_pins()
     checked_source_files = _verify_import_boundary()
     _require(len(tuple(ROOT.glob("pyproject.toml"))) == 1, "repository must have one project")

@@ -17,10 +17,10 @@ from pathlib import Path, PurePosixPath
 from packaging.specifiers import SpecifierSet
 
 EXPECTED_PINS = {
-    "meridian-storage-core==1.0.0",
-    "meridian-storage-evidence==1.0.0",
-    "meridian-storage-query==1.0.0",
-    "meridian-storage-semantics==1.0.0",
+    "meridian-storage-core==1.0.1",
+    "meridian-storage-evidence==1.0.1",
+    "meridian-storage-query==1.0.2",
+    "meridian-storage-semantics==2.0.0",
 }
 
 

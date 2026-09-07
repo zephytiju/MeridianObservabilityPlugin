@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 import pytest
-from opentelemetry import baggage, context
+from opentelemetry import baggage, context, trace
 
 from meridian_storage import OperationContext, bind_context
 from meridian_storage.plugins.observability import (
@@ -11,8 +11,35 @@ from meridian_storage.plugins.observability import (
     InvalidInstrument,
     InvalidObservabilityConfiguration,
 )
+from meridian_storage.plugins.observability.context import ContextPolicy as PublicContextPolicy
 from meridian_storage.plugins.observability.context import correlation_attributes
 from meridian_storage.plugins.observability.providers import suppress_instrumentation
+
+
+def test_usage_capture_public_imports_preserve_correlation_fields() -> None:
+    assert PublicContextPolicy is ContextPolicy
+    span = trace.NonRecordingSpan(
+        trace.SpanContext(trace_id=int("a" * 32, 16), span_id=int("b" * 16, 16), is_remote=False)
+    )
+    with (
+        bind_context(
+            OperationContext(
+                principal_ref="principal:private",
+                request_id="request-usage",
+                tenant="private-tenant",
+                correlation_id="correlation-usage",
+                scope={"private": "never-copy"},
+            )
+        ),
+        trace.use_span(span),
+    ):
+        assert correlation_attributes(PublicContextPolicy()) == {
+            "trace_id": "a" * 32,
+            "span_id": "b" * 16,
+            "meridian.request.id": "request-usage",
+            "meridian.correlation.id": "correlation-usage",
+        }
+        assert correlation_attributes(PublicContextPolicy(), include_request=False) == {}
 
 
 def test_context_correlation_excludes_principal_tenant_and_unlisted_scope() -> None:

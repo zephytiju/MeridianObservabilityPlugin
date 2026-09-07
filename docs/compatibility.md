@@ -2,8 +2,8 @@
 
 # Compatibility
 
-Version 1.0.1 supports Python 3.12 through 3.14 and pins the released Core,
-Semantics, Query, and Evidence distributions to 1.0.0. ClickHouse 1.0.0 is a
+The compatibility candidate supports Python 3.12 through 3.14 and pins Core
+1.0.1, Semantics 2.0.0, Query 1.0.2, and Evidence 1.0.1. ClickHouse 1.0.1 is a
 test-only integration dependency. OpenTelemetry API, SDK, and OTLP exporters
 are pinned to 1.44.0 as one coherent instrumentation set.
 
