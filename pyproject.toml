@@ -3,8 +3,8 @@ requires = ["hatchling==1.27.0"]
 build-backend = "hatchling.build"
 
 [project]
-name = "meridian-storage-plugin-observability"
-version = "1.0.1"
+name = "meridian-plugin-observability"
+version = "1.0.2"
 description = "Meridian V1 observability plugin for governed OpenTelemetry and evidence queries"
 readme = "README.md"
 requires-python = ">=3.12,<3.15"

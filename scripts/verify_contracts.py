@@ -47,7 +47,7 @@ def _load_json(path: Path) -> dict[str, Any]:
 
 
 def _distribution_pins() -> dict[str, str]:
-    distribution = metadata.distribution("meridian-storage-plugin-observability")
+    distribution = metadata.distribution("meridian-plugin-observability")
     result: dict[str, str] = {}
     for raw in distribution.requires or ():
         requirement = Requirement(raw)
@@ -134,7 +134,7 @@ def main() -> None:
 
     evidence = {
         "formatVersion": "meridian.observability.conformance.v1",
-        "package": "meridian-storage-plugin-observability",
+        "package": "meridian-plugin-observability",
         "version": __version__,
         "contracts": {
             "goldenSha256": hashlib.sha256(golden_path.read_bytes()).hexdigest(),

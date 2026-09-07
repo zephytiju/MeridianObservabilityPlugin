@@ -1,8 +1,8 @@
 {
   "$comment": "SPDX-License-Identifier: Apache-2.0",
   "formatVersion": "meridian-package-compatibility.v1",
-  "package": "meridian-storage-plugin-observability",
-  "version": "1.0.1",
+  "package": "meridian-plugin-observability",
+  "version": "1.0.2",
   "python": ">=3.12,<3.15",
   "designRevisions": {
     "hld": 56,
@@ -62,7 +62,7 @@
   "boundaries": {
     "collectorLifecycleOwner": "MeridianConstructs/Platform",
     "engineSelectionOwner": "Platform/Vangu IaC",
-    "otelFacadeOwner": "meridian-storage-plugin-observability",
+    "otelFacadeOwner": "meridian-plugin-observability",
     "evidenceSyntaxOwner": "meridian-storage-evidence",
     "nativeQuery": "excluded-post-v1"
   }

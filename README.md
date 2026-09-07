@@ -6,11 +6,11 @@
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.12--3.14-blue.svg)](pyproject.toml)
 
-`meridian-storage-plugin-observability` is the single Apache-2.0 Python distribution in
+`meridian-plugin-observability` is the single Apache-2.0 Python distribution in
 this repository. It contributes `meridian_storage.plugins.observability` to the
 PEP 420 `meridian_storage` namespace.
 
-The plugin gives a started Meridian 1.0.0 runtime one governed surface for:
+The plugin gives a started Meridian 1.0.1 runtime one governed surface for:
 
 - process-wide or isolated OpenTelemetry tracers, meters, and structured loggers;
 - resource, context, redaction, cardinality, recursion, and shutdown policy;
@@ -23,12 +23,11 @@ accept backend credentials, start a Collector, or expose an Adapter/Engine API.
 ## Install
 
 ```console
-python -m pip install meridian-storage-plugin-observability==1.0.1
+python -m pip install meridian-plugin-observability==1.0.2
 ```
 
-The release is pinned to `meridian-storage-core`, `meridian-storage-semantics`,
-`meridian-storage-evidence`, and `meridian-storage-query` 1.0.0 and
-OpenTelemetry Python 1.44.0.
+The release pins Core 1.0.1, Semantics 2.0.0, Evidence 1.0.1, Query 1.0.2,
+and OpenTelemetry Python 1.44.0. The test extra uses ClickHouse 1.0.1.
 
 Deployment must render `OTEL_EXPORTER_OTLP_ENDPOINT`,
 `MERIDIAN_DEPLOYMENT_ENVIRONMENT`, and any TLS/exporter environment required by
