@@ -45,7 +45,7 @@ test = [
   "pip-audit==2.9.0",
   "pytest==9.0.3",
   "pytest-cov==6.2.1",
-  "ruff==0.12.10",
+  "ruff==0.16.6",
   "twine==6.1.0",
 ]
 
