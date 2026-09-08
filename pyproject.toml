@@ -42,7 +42,7 @@ test = [
   "jsonschema==4.25.1",
   "meridian-storage-clickhouse>=1.1.1,<2",
   "mypy==1.17.1",
-  "pip-audit==2.9.0",
+  "pip-audit==2.10.1",
   "pytest==9.0.3",
   "pytest-cov==6.2.1",
   "ruff==0.12.10",
