@@ -12,6 +12,7 @@ from typing import Any
 
 from jsonschema import Draft202012Validator
 from packaging.requirements import Requirement
+from packaging.specifiers import SpecifierSet
 
 from meridian_storage import __version__ as core_version
 from meridian_storage.evidence import __version__ as evidence_version
@@ -21,11 +22,11 @@ from meridian_storage.query import __version__ as query_version
 from meridian_storage.semantics import __version__ as semantics_version
 
 ROOT = Path(__file__).resolve().parents[1]
-EXPECTED_PINS = {
-    "meridian-storage-core": "==1.0.1",
-    "meridian-storage-evidence": "==1.0.1",
-    "meridian-storage-query": "==1.0.2",
-    "meridian-storage-semantics": "==2.0.0",
+EXPECTED_REQUIREMENTS = {
+    "meridian-storage-core": "<2,>=1.1.0",
+    "meridian-storage-evidence": "<2,>=1.0.2",
+    "meridian-storage-query": "<2,>=1.0.3",
+    "meridian-storage-semantics": "<3,>=2.0.1",
 }
 FORBIDDEN_IMPORTS = (
     "clickhouse_connect",
@@ -51,10 +52,10 @@ def _distribution_pins() -> dict[str, str]:
     result: dict[str, str] = {}
     for raw in distribution.requires or ():
         requirement = Requirement(raw)
-        if requirement.name in EXPECTED_PINS and requirement.marker is None:
+        if requirement.name in EXPECTED_REQUIREMENTS and requirement.marker is None:
             result[requirement.name] = str(requirement.specifier)
-    if result != EXPECTED_PINS:
-        raise AssertionError(f"released Meridian pins differ: {result!r}")
+    if result != EXPECTED_REQUIREMENTS:
+        raise AssertionError(f"released Meridian requirements differ: {result!r}")
     return result
 
 
@@ -117,9 +118,16 @@ def main() -> None:
         "meridian-storage-semantics": semantics_version,
     }
     _require(
-        versions == {name: pin.removeprefix("==") for name, pin in EXPECTED_PINS.items()},
-        "released Meridian versions differ",
+        all(versions[name] in SpecifierSet(spec) for name, spec in EXPECTED_REQUIREMENTS.items()),
+        "installed Meridian versions violate public API requirements",
     )
+    _require(compatibility["version"] == __version__, "compatibility ledger version differs")
+    ledger_requirements = {
+        entry["package"]: str(SpecifierSet(entry["constraint"]))
+        for entry in compatibility["dependencies"]
+        if entry["role"] == "runtime"
+    }
+    _require(ledger_requirements == EXPECTED_REQUIREMENTS, "ledger API requirements differ")
     pins = _distribution_pins()
     checked_source_files = _verify_import_boundary()
     _require(len(tuple(ROOT.glob("pyproject.toml"))) == 1, "repository must have one project")

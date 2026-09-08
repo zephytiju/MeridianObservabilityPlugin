@@ -9,7 +9,7 @@
   "properties": {
     "formatVersion": {"const": "meridian.observability.plugin.v1"},
     "package": {"const": "meridian-plugin-observability"},
-    "version": {"const": "1.0.2"},
+    "version": {"const": "1.0.3"},
     "plugin": {
       "type": "object",
       "additionalProperties": false,

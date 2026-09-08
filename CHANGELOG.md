@@ -4,6 +4,16 @@
 
 All notable changes follow Semantic Versioning.
 
+## 1.0.3 - 2026-09-08
+
+- Replace historical exact Meridian recipes with justified public API bounds
+  admitting Core 1.1.0 and the repaired Evidence/Query/Semantics releases.
+- Keep an exact public dependency hash lock and tested artifact ledger; consume
+  ClickHouse 1.1.1 with corrected physical cursor boundaries.
+- Require real ClickHouse log/span/metric regressions across Python 3.12–3.14
+  and two independently selected, digest-pinned server releases.
+- Preserve OTel 1.44.0, provider/context policies and golden query fingerprints.
+
 ## 1.0.2 - 2026-09-07
 
 - Restore the current design-owned `meridian-plugin-observability` PyPI identity;
