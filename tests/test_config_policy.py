@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: Apache-2.0
 from __future__ import annotations
 
+from importlib.metadata import version
+
 import pytest
 
 from meridian_storage.plugins.observability import (
@@ -28,7 +30,7 @@ def test_service_identity_protects_required_resource_attributes() -> None:
     identity = ServiceIdentity("orders-api", "1.2.3", "prod", {"cloud.region": "us-west-2"})
     attributes = identity.resource_attributes()
     assert attributes["service.name"] == "orders-api"
-    assert attributes["meridian.sdk.version"] == "1.0.1"
+    assert attributes["meridian.sdk.version"] == version("meridian-storage-core")
     assert attributes["cloud.region"] == "us-west-2"
     with pytest.raises(InvalidResourceIdentity):
         ServiceIdentity("orders", "1.0.0", "prod", {"service.name": "spoofed"})

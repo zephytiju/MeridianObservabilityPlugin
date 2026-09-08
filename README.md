@@ -10,7 +10,7 @@
 this repository. It contributes `meridian_storage.plugins.observability` to the
 PEP 420 `meridian_storage` namespace.
 
-The plugin gives a started Meridian 1.0.1 runtime one governed surface for:
+The plugin gives a started Meridian 1.x runtime one governed surface for:
 
 - process-wide or isolated OpenTelemetry tracers, meters, and structured loggers;
 - resource, context, redaction, cardinality, recursion, and shutdown policy;
@@ -23,11 +23,13 @@ accept backend credentials, start a Collector, or expose an Adapter/Engine API.
 ## Install
 
 ```console
-python -m pip install meridian-plugin-observability==1.0.2
+python -m pip install meridian-plugin-observability==1.0.3
 ```
 
-The release pins Core 1.0.1, Semantics 2.0.0, Evidence 1.0.1, Query 1.0.2,
-and OpenTelemetry Python 1.44.0. The test extra uses ClickHouse 1.0.1.
+The release supports the public Core 1.1.0, Semantics 2.0.1, Evidence 1.0.2
+and Query 1.0.3 closure with compatible major bounds. OpenTelemetry remains
+1.44.0; ClickHouse 1.1.1 is test-only. See the compatibility rationale and exact
+validation lock for the verified combination.
 
 Deployment must render `OTEL_EXPORTER_OTLP_ENDPOINT`,
 `MERIDIAN_DEPLOYMENT_ENVIRONMENT`, and any TLS/exporter environment required by
@@ -97,10 +99,22 @@ See [architecture](docs/architecture.md), [configuration](docs/configuration.md)
 
 ## Development
 
+Start the digest-pinned ClickHouse service below before running the full suite.
+The local credentials are only for this isolated test container.
+
+```console
+docker run -d --name observability-test -p 127.0.0.1:28123:8123 \
+  -e CLICKHOUSE_USER=meridian -e CLICKHOUSE_PASSWORD=meridian-test \
+  -e CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT=1 \
+  clickhouse/clickhouse-server@sha256:0152dd511befe6a2c2ef53e930726179669b08116da78500b37c51c96ff5ee77
+```
+
 ```console
 python -m venv .venv
 .venv/bin/python -m pip install --upgrade pip==26.2
-.venv/bin/python -m pip install -e '.[test]'
+.venv/bin/python -m pip install --require-hashes -r requirements-validation.txt
+.venv/bin/python -m pip install '.[test]'
+.venv/bin/python -m pip check
 .venv/bin/ruff format --check .
 .venv/bin/ruff check .
 .venv/bin/mypy src
@@ -109,6 +123,8 @@ python -m venv .venv
 .venv/bin/python -m build --no-isolation
 .venv/bin/python scripts/verify_artifacts.py dist
 ```
+
+Stop the test service with `docker rm -f observability-test` after validation.
 
 ## License
 

@@ -1,7 +1,7 @@
 {
   "formatVersion": "meridian.observability.plugin.v1",
   "package": "meridian-plugin-observability",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "plugin": {
     "id": "observability",
     "contract": "1.0.0",

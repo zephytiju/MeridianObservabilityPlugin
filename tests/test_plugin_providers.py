@@ -36,7 +36,7 @@ def test_plugin_manifest_and_installed_entry_point_match_released_core_contract(
     assert isinstance(factory, PluginFactory)
     manifest = factory.manifest()
     assert manifest.plugin_id == "observability"
-    assert manifest.plugin_version == "1.0.2"
+    assert manifest.plugin_version == "1.0.3"
     assert manifest.core_contract == "1.x"
     assert manifest.extensions["distribution"] == "meridian-plugin-observability"
     points = metadata.entry_points().select(group="meridian_storage.plugins")

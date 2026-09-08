@@ -2,47 +2,48 @@
   "$comment": "SPDX-License-Identifier: Apache-2.0",
   "formatVersion": "meridian-package-compatibility.v1",
   "package": "meridian-plugin-observability",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "python": ">=3.12,<3.15",
-  "designRevisions": {
-    "hld": 56,
-    "catalogsAndPublicInterfaces": 70,
-    "engineAdapters": 24,
-    "kafkaStreamingAdapter": 6,
-    "meridianConstructs": 45,
-    "observabilityLld": 37,
-    "sharedPlatformFoundations": 38
-  },
   "dependencies": [
     {
       "package": "meridian-storage-core",
-      "constraint": "==1.0.1",
-      "releaseCommit": "ed9f1c140130cd235b9e64fe117cad8b9c40f30a",
-      "wheelSha256": "5c873da941b7b5e14ca0d852d723f919e88a28bbf6cc48ae0ef985b64cac9a97"
+      "constraint": ">=1.1.0,<2",
+      "testedVersion": "1.1.0",
+      "wheelSha256": "fc7372a17993f43ec285e3d52c0e9c458ef8e6f5ce13bb2d1b01b064aa8eff49",
+      "releaseUrl": "https://pypi.org/project/meridian-storage-core/1.1.0/",
+      "role": "runtime"
     },
     {
       "package": "meridian-storage-semantics",
-      "constraint": "==2.0.0",
-      "releaseCommit": "1192eb21c3a9abac779508f52ea156df63f7e980",
-      "wheelSha256": "86c5f5c4d7f7af045b70e5e7480b21d794d166c37d2d76acb54c4720d49732d5"
+      "constraint": ">=2.0.1,<3",
+      "testedVersion": "2.0.1",
+      "wheelSha256": "5acd127b849a7898c33ed33308b595490447dddb5af9a7d2ec1df16b546279a4",
+      "releaseUrl": "https://pypi.org/project/meridian-storage-semantics/2.0.1/",
+      "role": "runtime"
     },
     {
       "package": "meridian-storage-query",
-      "constraint": "==1.0.2",
-      "releaseCommit": "c98eef3faec44d6c9b87e214a91f4964316b1771",
-      "wheelSha256": "fa4d7b157a8fd1c1ba18cedab09dadf0e8f5e301f5734e3e38f41906853527b8"
+      "constraint": ">=1.0.3,<2",
+      "testedVersion": "1.0.3",
+      "wheelSha256": "615035e5d50fd6b1cb6bbdc042eaca2c07cf7f2cc5fe0db68a2c66dd7e36455b",
+      "releaseUrl": "https://pypi.org/project/meridian-storage-query/1.0.3/",
+      "role": "runtime"
     },
     {
       "package": "meridian-storage-evidence",
-      "constraint": "==1.0.1",
-      "releaseCommit": "edd950f2452a5b4bf75e002cd69ea16abf4c84ee",
-      "wheelSha256": "2fa9b5bb730a535432362a105a552e6c59b4da73521cde5bfbc477bbc32c2276"
+      "constraint": ">=1.0.2,<2",
+      "testedVersion": "1.0.2",
+      "wheelSha256": "25305ebcc4a2a4668ec365c8c20c0793d7074d88f96f7c5539af50bfcc34f449",
+      "releaseUrl": "https://pypi.org/project/meridian-storage-evidence/1.0.2/",
+      "role": "runtime"
     },
     {
       "package": "meridian-storage-clickhouse",
-      "constraint": "==1.0.1; test only",
-      "releaseCommit": "b4fe1d23140706cf839ed780b4fba93198e69f7f",
-      "wheelSha256": "a3d810666caff07a969f6bf1c121dea05e2bdc2fb019c723cb14540bd78230e5"
+      "constraint": ">=1.1.1,<2",
+      "testedVersion": "1.1.1",
+      "wheelSha256": "8c1583da6a455ea1763f6e03252568212ce762c185f4aa6b7ba10c32f6cce8e8",
+      "releaseUrl": "https://pypi.org/project/meridian-storage-clickhouse/1.1.1/",
+      "role": "test-only"
     }
   ],
   "contracts": {
@@ -65,5 +66,8 @@
     "otelFacadeOwner": "meridian-plugin-observability",
     "evidenceSyntaxOwner": "meridian-storage-evidence",
     "nativeQuery": "excluded-post-v1"
-  }
+  },
+  "designAuthority": "https://qcnwge0wy4s0.feishu.cn/docx/PvUbdYdlNoBM81xzaaxcwssknvg",
+  "validationLock": "requirements-validation.txt",
+  "untestedCombinations": "unverified"
 }
